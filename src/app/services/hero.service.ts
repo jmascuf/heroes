@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ɵINTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic';
 import { Observable, of } from 'rxjs';
 import { Hero } from '../shared/interfaces/hero';
 
@@ -14,21 +15,32 @@ export class HeroService {
 
   }
 
-  getHeroes() {
+  all() {
     return this.heroes;
   }
 
-  setHero(obj: Hero) {
+  add(obj: Hero) {
     let id = this.getNewId()
     obj.id = id;
     this.heroes.push(obj)
   }
-  getHero(id: number): Hero | undefined {
+
+  find(id: number): Hero | undefined {
     return this.heroes.find(element => element.id == id)
   }
 
+  update(hero: Hero):void {
 
-  deleteHero(id: number) {
+    for (const iterator of this.heroes) {
+      if (iterator.id == hero.id){
+        iterator.name = hero.name;
+        break
+      }
+      
+    }
+  }
+
+  delete(id: number) {
     for (let i = 0; i <= this.heroes.length; i++) {
       if (this.heroes[i].id == id) {
         this.heroes.splice(i, 1);
@@ -46,8 +58,6 @@ export class HeroService {
     }
     return n
   }
-
-
 
 
 }

@@ -1,4 +1,9 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HeroService } from 'src/app/services/hero.service';
+import { Hero } from 'src/app/shared/interfaces/hero';
 
 @Component({
   selector: 'app-edit',
@@ -7,9 +12,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComponent implements OnInit {
 
-  constructor() { }
+  hero: Hero = { name: '', id: 0 };
+  
+  form = new FormGroup({});
+  routeId:number = 0;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private _heroService: HeroService,
+  ) {  }
 
   ngOnInit(): void {
+    this.routeId = parseInt(this.activatedRoute.snapshot.paramMap.get('id') || '1', 10);
+    this.getHero(this.routeId);
+  }
+
+  getHero(id:number): void {
+    
+    this.hero = this._heroService.find(id)!;
+    console.log(this.hero);
+    this.form.addControl('name', new FormControl(this.hero.name))
+    
+  }
+
+  save() {
+    this.hero.name = this.form.controls['name'].value
+    this._heroService.update(this.hero);
+    this.router.navigate([''])
+
+  }
+
+  delete() {
+    this._heroService.delete(this.hero.id);
+    this.router.navigate([''])
   }
 
 }

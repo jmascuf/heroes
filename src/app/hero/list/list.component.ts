@@ -17,13 +17,16 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.heroes = this._heroService.getHeroes()
+    this.heroes = this._heroService.all();
   }
 
-  gotoDetail(id:number){
-    console.log('id', id);
+  goToDetail(id:number){
     
     this.router.navigate(['detail/'+id])
+  }
+
+  add(){
+    this.router.navigate(['new'])
   }
 
 

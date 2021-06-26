@@ -1,7 +1,13 @@
 
 <mat-card>
+  <mat-card-header>
+    <mat-card-title>List of Heroes</mat-card-title>
+  </mat-card-header>
   <mat-list role="list">
-    <mat-list-item *ngFor="let hero of heroes" role="listitem" (click)="gotoDetail(hero.id)">{{hero.name}}</mat-list-item>
+    <mat-list-item *ngFor="let hero of heroes" role="listitem" (click)="goToDetail(hero.id)">{{hero.name}}</mat-list-item>
   </mat-list>
+  <mat-card-actions>
+    <button mat-button (click)="add()">add</button>
+  </mat-card-actions>
 </mat-card>
 
