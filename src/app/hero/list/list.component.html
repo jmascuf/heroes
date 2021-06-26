@@ -1,0 +1,7 @@
+
+<mat-card>
+  <mat-list role="list">
+    <mat-list-item *ngFor="let hero of heroes" role="listitem" (click)="gotoDetail(hero.id)">{{hero.name}}</mat-list-item>
+  </mat-list>
+</mat-card>
+
