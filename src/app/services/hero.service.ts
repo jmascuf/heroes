@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hero } from '../shared/interfaces/hero';
+import { HEROES } from '../mock-heroes';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,7 @@ export class HeroService {
   private heroes: Hero[];
   constructor(
   ) {
-
-    this.heroes = [{ name: 'local hero', id: 1 }, { name: 'western hero', id: 2 }]
-
+    this.heroes = HEROES;
   }
 
   all() {
