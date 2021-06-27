@@ -20,8 +20,11 @@ body {
   flex: 1 1 auto;
 }
 
-.half-width-right {
-  width: 50%;
-  display: block;
+.pull-right {
+  margin: 1em;
+  display: flex;
   justify-content: flex-end;
+}
+.search-button{
+  margin: 1em ;
 }
