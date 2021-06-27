@@ -1,13 +1,16 @@
-
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>List of Heroes</mat-card-title>
-  </mat-card-header>
+<div class="heroes-viewer-wrapper">
+  <h1>List of Heroes</h1>
+  <form [formGroup]="searchForm">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Search</mat-label>
+      <input matInput type="text" formControlName="searchText">
+    </mat-form-field>
+    <button mat-stroked-button (click)="search()">search</button>
+  </form>
   <mat-list role="list">
-    <mat-list-item *ngFor="let hero of heroes" role="listitem" (click)="goToDetail(hero.id)">{{hero.name}}</mat-list-item>
+    <mat-list-item *ngFor="let hero of heroes" role="listitem" (click)="goToDetail(hero.id)" class="hero-file">
+      {{hero.name}}</mat-list-item>
   </mat-list>
-  <mat-card-actions>
-    <button mat-stroked-button (click)="add()">add</button>
-  </mat-card-actions>
-</mat-card>
-
+  <mat-divider></mat-divider>
+  <button mat-stroked-button (click)="add()">add</button>
+</div>
