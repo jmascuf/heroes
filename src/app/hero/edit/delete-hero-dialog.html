@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Hero</h1>
+<div mat-dialog-content>
+  <p>This action will delete the hero  {{data.name}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+  <button mat-stroked-button (click)="delete()" cdkFocusInitial>Delete</button>
+</div>
