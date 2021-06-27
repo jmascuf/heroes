@@ -10,6 +10,7 @@ import { EditComponent, DeleteHeroDialog } from './hero/edit/edit.component';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { UiModule } from './ui.module';
+import { UpperCaseTextDirective } from './shared/directives/upperCaseText.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UiModule } from './ui.module';
     NewComponent,
     ListComponent,
     EditComponent,
-    DeleteHeroDialog
+    DeleteHeroDialog,
+    UpperCaseTextDirective
   ],
 
   imports: [
