@@ -33,11 +33,13 @@ export class EditComponent implements OnInit {
     this.hero = this._heroService.find(id)!;
     console.log(this.hero);
     this.form.addControl('name', new FormControl(this.hero.name))
+    this.form.addControl('description', new FormControl(this.hero.description))
     
   }
 
   save() {
     this.hero.name = this.form.controls['name'].value
+    this.hero.description = this.form.controls['description'].value
     this._heroService.update(this.hero);
     this.router.navigate([''])
 

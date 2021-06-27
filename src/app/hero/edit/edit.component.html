@@ -5,11 +5,17 @@
   </mat-card-header>
   <mat-card-content>
     <form action="save()" [formGroup]="form" >
-      <!-- <label for="name">Name: </label>
-      <input id="name" type="text" formControlName="name"> -->
+      <p>
+
+        <mat-form-field class="half-width" appearance="fill">
+          <mat-label>Hero Name:</mat-label>
+          <input matInput placeholder="Hercules" formControlName="name">
+        </mat-form-field>
+      </p>
+
       <mat-form-field class="half-width" appearance="fill">
-        <mat-label>Hero Name:</mat-label>
-        <input matInput placeholder="Batman" formControlName="name">
+        <mat-label>Hero description:</mat-label>
+        <textarea  matInput  formControlName="description"></textarea>
       </mat-form-field>
 
     </form>
