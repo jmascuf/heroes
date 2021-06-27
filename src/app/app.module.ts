@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { DetailComponent } from './hero/detail/detail.component';
 import { NewComponent } from './hero/new/new.component';
 import { ListComponent } from './hero/list/list.component';
-import { EditComponent } from './hero/edit/edit.component';
+import { EditComponent, DeleteHeroDialog } from './hero/edit/edit.component';
 
 import {  ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,8 +17,10 @@ import { UiModule } from './ui.module';
     DetailComponent,
     NewComponent,
     ListComponent,
-    EditComponent
+    EditComponent,
+    DeleteHeroDialog
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
