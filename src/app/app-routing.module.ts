@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DetailComponent } from './hero/detail/detail.component';
-import { EditComponent } from './hero/edit/edit.component';
 // Components
 import { ListComponent } from './hero/list/list.component';
-import { NewComponent } from './hero/new/new.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'/heroes', pathMatch: 'full'},
+  { path: '', redirectTo: '/heroes', pathMatch: 'full' },
   { path: 'heroes', component: ListComponent },
-  { path: 'new', component: NewComponent },
-  { path: 'detail/:id', component: DetailComponent },
-  { path: 'edit/:id', component: EditComponent },
-  
+  { path: 'detail', loadChildren: () => import('./hero/detail/detail.module').then(m => m.DetailModule) },
+  { path: 'new', loadChildren: () => import('./hero/new/new.module').then(m => m.NewModule) },
+  { path: 'edit', loadChildren: () => import('./hero/edit/edit.module').then(m => m.EditModule) },
+
 ];
 
 @NgModule({

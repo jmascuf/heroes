@@ -1,33 +1,36 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { DetailComponent } from './hero/detail/detail.component';
-import { NewComponent } from './hero/new/new.component';
-import { ListComponent } from './hero/list/list.component';
-import { EditComponent, DeleteHeroDialog } from './hero/edit/edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import {  ReactiveFormsModule } from '@angular/forms';
+import { UpperCaseTextDirective } from './shared/directives/upperCaseText.directive';
+
 import { AppRoutingModule } from './app-routing.module';
 import { UiModule } from './ui.module';
-import { UpperCaseTextDirective } from './shared/directives/upperCaseText.directive';
+import { NewModule } from './hero/new/new.module';
+import { DetailModule } from './hero/detail/detail.module';
+import { EditModule } from './hero/edit/edit.module';
+
+import { AppComponent } from './app.component';
+import { ListComponent } from './hero/list/list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
+    UpperCaseTextDirective,
     AppComponent,
-    DetailComponent,
-    NewComponent,
     ListComponent,
-    EditComponent,
-    DeleteHeroDialog,
-    UpperCaseTextDirective
   ],
 
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
-    UiModule
+    AppRoutingModule,
+    UiModule,
+    NewModule,
+    DetailModule,
+    EditModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { HeroService } from 'src/app/services/hero.service';
 import { Hero } from 'src/app/shared/interfaces/hero';
 
@@ -17,6 +18,7 @@ export class DetailComponent implements OnInit {
     private router: Router,
     private _heroService: HeroService,
   ) {
+    console.log('detail');
     
     this.hero = { name: '', id: 0 }
     this.routeId = 0;
