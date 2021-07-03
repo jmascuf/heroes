@@ -6,9 +6,6 @@ import { UpperCaseTextDirective } from './shared/directives/upperCaseText.direct
 
 import { AppRoutingModule } from './app-routing.module';
 import { UiModule } from './ui.module';
-import { NewModule } from './hero/new/new.module';
-import { DetailModule } from './hero/detail/detail.module';
-import { EditModule } from './hero/edit/edit.module';
 
 import { AppComponent } from './app.component';
 import { ListComponent } from './hero/list/list.component';
@@ -28,9 +25,7 @@ import { BrowserModule } from '@angular/platform-browser';
     ReactiveFormsModule,
     AppRoutingModule,
     UiModule,
-    NewModule,
-    DetailModule,
-    EditModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
