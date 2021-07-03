@@ -1,11 +1,11 @@
-import { stringify } from '@angular/compiler/src/util';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { Component,  OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeroService } from 'src/app/services/hero.service';
 import { Hero } from 'src/app/shared/interfaces/hero';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {DeleteHeroDialog} from './delete-hero-dialog'
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit',
@@ -64,29 +64,5 @@ export class EditComponent implements OnInit {
       if (result)
         this.delete()
     });
-  }
-}
-
-export interface DialogData {
-  name: string;
-}
-
-@Component({
-  selector: 'delele-hero-dialog',
-  templateUrl: './delete-hero-dialog.html',
-})
-export class DeleteHeroDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DeleteHeroDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  delete() {
-    console.log('delete');
-    this.dialogRef.close(true)
   }
 }

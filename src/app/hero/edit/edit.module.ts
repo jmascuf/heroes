@@ -6,11 +6,12 @@ import { UiModule } from 'src/app/ui.module';
 
 import { EditRoutingModule } from './edit-routing.module';
 import { EditComponent } from './edit.component';
-
+import { DeleteHeroDialog } from './delete-hero-dialog';
 
 @NgModule({
   declarations: [
-    EditComponent
+    EditComponent,
+    DeleteHeroDialog
   ],
   imports: [
     CommonModule,
