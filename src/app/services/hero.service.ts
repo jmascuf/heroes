@@ -1,40 +1,54 @@
 import { Injectable } from '@angular/core';
 import { Hero } from '../shared/interfaces/hero';
-import { HEROES } from '../mock-heroes';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
-  private heroes: Hero[];
+  private heroes:Hero[];
   constructor(
-  ) {
-    this.heroes = HEROES;
-  }
+    private http: HttpClient
+  ) { 
+    this.heroes = [];
+   }
 
   all() {
-    return this.heroes;
-  }
-
-  add(obj: Hero) {
-    let id = this.getNewId()
-    obj.id = id;
-    this.heroes.push(obj)
-  }
-
-  find(id: number): Hero | undefined {
-    return this.heroes.find(element => element.id == id)
-  }
-
-  update(hero: Hero):void {
-
-    for (const iterator of this.heroes) {
-      if (iterator.id == hero.id){
-        iterator.name = hero.name;
-        break
-      }
+    return this.http.get<any>('api/heroes')
+      .pipe(map(heroes => { this.heroes = heroes; return heroes }))
       
-    }
+  }
+
+  filter(search: string){
+    return this.http.post<any>('api/heroes', search).pipe(
+      map(heroes => { this.heroes = heroes; return heroes }) 
+    )
+  }
+
+  find(id: number) {
+    return this.http.get<any>(`api/heroes/` + id)
+    .pipe(map(hero => {
+      return hero;
+    }));
+  }
+
+  add(hero: Hero) {
+    let id = this.getNewId()
+    hero.id = id;
+
+    return this.http.post<Hero>(`api/heroes/create`, hero)
+      .pipe(map(res => {
+        return res;
+      }));
+  }
+
+  update(hero: Hero) {
+    return this.http.post<Hero>(`api/heroes/update`, hero)
+    .pipe(map(res => {
+      return res;
+    }));
+
   }
 
   delete(id: number) {
@@ -45,6 +59,12 @@ export class HeroService {
         this.heroes.splice(index, 1);
       }
     }
+
+    return this.http.delete<Hero>(`api/heroes/` + id)
+    .pipe(map(hero => {
+      return hero;
+    }));
+    
   }
 
   getNewId(): number {
