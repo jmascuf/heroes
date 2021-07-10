@@ -33,29 +33,36 @@ export class EditComponent implements OnInit {
 
   getHero(id: number): void {
 
-    this.hero = this.heroService.find(id)!;
-    console.log(this.hero);
-    this.form.addControl('name', new FormControl(this.hero.name))
-    this.form.addControl('description', new FormControl(this.hero.description))
+    this.heroService.find(id).subscribe(res => {
+      this.hero = res;
+      this.form.addControl('name', new FormControl(this.hero.name))
+      this.form.addControl('description', new FormControl(this.hero.description))
+    }, err => {
+      console.log(err);
+    })
+    
 
   }
 
   save() {
     this.hero.name = this.form.controls['name'].value
     this.hero.description = this.form.controls['description'].value
-    this.heroService.update(this.hero);
-    this.router.navigate([''])
-
+    this.heroService.update(this.hero).subscribe(res => {
+      this.router.navigate([''])
+    },
+    err => { console.log(err)})
   }
 
   delete() {
-    this.heroService.delete(this.hero.id);
-    this.router.navigate([''])
+    this.heroService.delete(this.hero.id).subscribe(res => {
+      this.router.navigate([''])
+    },
+    err => { console.log(err)})
   }
 
   deleteDialog() {
     const dialogRef = this.dialog.open(DeleteHeroDialog, {
-      width: '250px',
+      width: '25em',
       data: { name: this.hero.name }
     });
 

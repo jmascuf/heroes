@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 import { HeroService } from 'src/app/services/hero.service';
 import { Hero } from 'src/app/shared/interfaces/hero';
@@ -12,14 +13,12 @@ import { Hero } from 'src/app/shared/interfaces/hero';
 export class DetailComponent implements OnInit {
 
   hero: Hero;
-  routeId:number;
+  routeId: number;
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private _heroService: HeroService,
+    private heroService: HeroService,
   ) {
-    console.log('detail');
-    
     this.hero = { name: '', id: 0 }
     this.routeId = 0;
   }
@@ -29,13 +28,14 @@ export class DetailComponent implements OnInit {
     this.getHero(this.routeId);
   }
 
-  getHero(id:number): void {
-    
-    this.hero = this._heroService.find(id)!;
-      
+  getHero(id: number): void {
+    this.heroService.find(id).subscribe(res => {
+      this.hero = res;
+    }, err => {
+      console.log(err);
+    })
   }
-  goToEdit(){
-
-    this.router.navigate(['edit/'+this.routeId])
+  goToEdit() {
+    this.router.navigate(['edit/' + this.routeId])
   }
 }

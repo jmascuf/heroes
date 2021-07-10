@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './hero/list/list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './hero/interceptors';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,9 @@ import { BrowserModule } from '@angular/platform-browser';
     ReactiveFormsModule,
     AppRoutingModule,
     UiModule,
-
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

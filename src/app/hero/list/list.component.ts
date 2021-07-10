@@ -18,17 +18,21 @@ export class ListComponent implements OnInit {
     searchText: new FormControl('')
   })
 
-  constructor(private _heroService: HeroService,
+  constructor(private heroService: HeroService,
     private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.heroes = this._heroService.all();
+    this.heroService.all().subscribe(
+      res => { this.heroes = res },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
   goToDetail(id: number) {
-
     this.router.navigate(['detail/' + id])
   }
 
@@ -37,10 +41,11 @@ export class ListComponent implements OnInit {
   }
 
   search() {
-    let search = this.searchForm.controls['searchText'].value
+    let search = this.searchForm.controls['searchText'].value;
     console.log(search);
-
-    this.heroes = this._heroService.all().filter(x => x.name.indexOf(search) >= 0)
+    this.heroService.filter(search).subscribe(
+      res => { this.heroes = res },
+      err => { console.log(err)})
   }
 
 }

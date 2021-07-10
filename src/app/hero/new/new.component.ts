@@ -28,8 +28,9 @@ export class NewComponent implements OnInit {
 
   add() {
     this.hero.name = this.form.controls['name'].value
-    this._heroService.add(this.hero)
-    this.router.navigate([''])
+    this._heroService.add(this.hero).subscribe(res =>{
+     this.router.navigate([''])
+    })
 
   }
 
